@@ -23,7 +23,17 @@ let bro  = {
     h: 35,
     dy: 2,
 }
+// Update Score 
+let scoreValue = 0;
 
+function updateScore(){
+    score.innerHTML = scoreValue;
+    for(let i in pipesArr){
+        if(pipesArr[i].x === 0){
+            scoreValue++
+        }
+    }
+}
 // Bro Move
 document.addEventListener("keydown", (e) => {
     if(e.keyCode === 32){
@@ -69,7 +79,6 @@ function renderPipes (){
         ctx.drawImage(pipe1Img, pipesArr[i].x, pipesArr[i].y, pipesArr[i].w, pipesArr[i].h);
         ctx.drawImage(pipe2Img, pipesArr[i].x, pipesArr[i].y -350, pipesArr[i].w, pipesArr[i].h);
     }
-
     updatePipes();
     deletePipes();
     broCollision();
@@ -105,6 +114,7 @@ requestAnimationFrame(game);
 
 function update(){
     broGravity();
+    updateScore();
 }
 
 function render (){
