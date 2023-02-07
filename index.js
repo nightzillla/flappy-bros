@@ -49,9 +49,53 @@ const pipe1Img = new Image ();
 pipe1Img.src = 'img/pipe1.png';
 
 const pipe2Img = new Image ();
-pipe1Img.src = 'img/pipe2.png';
+pipe2Img.src = 'img/pipe2.png';
 
+// Pipes Update 
+let pipesArr = [];
+let timer = 0; 
 
+function renderPipes (){
+    timer++;
+    if(timer % 100 === 0){
+        pipesArr.push({
+            x: 650,
+            y: getRandomInt(150, 300),
+            w: 60,
+            h: 200,
+        })
+    }
+    for ( let i in pipesArr){
+        ctx.drawImage(pipe1Img, pipesArr[i].x, pipesArr[i].y, pipesArr[i].w, pipesArr[i].h);
+        ctx.drawImage(pipe2Img, pipesArr[i].x, pipesArr[i].y -350, pipesArr[i].w, pipesArr[i].h);
+    }
+
+    updatePipes();
+    deletePipes();
+    broCollision();
+}
+
+function updatePipes(){
+    for ( let i in pipesArr){
+        pipesArr[i].x -= 5;
+    }
+}
+
+function deletePipes(){
+    for ( let i in pipesArr){
+        if(pipesArr[i].x <= -50){
+            pipesArr.splice(i, 1);
+        }
+    }
+}
+
+function broCollision(){
+    for ( let i in pipesArr){
+        if (pipesArr[i].x <= bro.x + bro.w && pipesArr[i].y <= bro.y + bro.h) {
+            location.reload();
+        }
+    }
+}
 function game(){
     update();
     render();
@@ -67,5 +111,6 @@ function render (){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     renderBro();
+    renderPipes();
     ctx.closePath();
 }
