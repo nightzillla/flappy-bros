@@ -14,7 +14,7 @@ function getRandomInt(min, max){
 
 // Bro
 const broImg = new Image ();
-broImg.src = 'img/potato.png';
+broImg.src = 'assets/img/potato.png';
 
 let bro  = {
     x: 50,
@@ -56,10 +56,10 @@ function renderBro() {
 
 // Pipes 
 const pipe1Img = new Image ();
-pipe1Img.src = 'img/pipe1.png';
+pipe1Img.src = 'assets/img/pipe1.png';
 
 const pipe2Img = new Image ();
-pipe2Img.src = 'img/pipe2.png';
+pipe2Img.src = 'assets/img/pipe2.png';
 
 // Pipes Update 
 let pipesArr = [];
